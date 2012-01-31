@@ -1,7 +1,12 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+open("db/dummy/tag.tsv") {|f|
+  f.each_line {|line|
+    line = line.strip
+    next if line.empty?
+
+    name,parent = line.split("\t")
+    Tag.create!(
+      :name   => name,
+      :parent => Tag.find_by_name(parent)
+    )
+  }
+}

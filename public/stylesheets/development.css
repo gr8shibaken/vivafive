@@ -1,0 +1,79 @@
+@CHARSET "utf-8";
+
+/* General Setting */
+
+* {margin:0;padding:0;}
+
+body {
+  font-family: "Helvetica Neue",helvetica,Arial,'Hiragino Kaku Gothic Pro',sans-serif;
+  font-size: 14px;
+  color: #333333;
+}
+
+.left {
+  float:left;
+}
+
+.right{
+  float:right;
+}
+
+.clear{
+  clear:both;
+}
+
+.overflow{
+  overlflow:hidden;
+}
+
+.bottom {
+  vertical-align:bottom;
+}
+
+.text-right{
+  text-align:right;
+}
+
+.text-center{
+  text-align:center;
+}
+
+.text-left{
+  text-align:left;
+}
+
+div#container {
+  margin:auto;
+  width:800px;
+  border-left:1px solid #dddddd;
+  border-right:1px solid #dddddd;
+  border-bottom:1px solid #dddddd;
+  background:#ffffff;
+}
+
+div#main {
+  min-height:490px;
+  padding:10px 20px;
+}
+
+div#header {
+  padding: 10px;
+}
+
+div#header div#logoArea{
+  font-size: 25px;
+}
+
+div#main {
+  padding:15px;
+}
+
+div.tagArea{
+  margin-right: 10px;
+  float:left;
+}
+
+select {
+  width: 150px;
+  font-size: 18px;
+}

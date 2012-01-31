@@ -1,0 +1,16 @@
+#container
+  #header
+    #logoArea.left
+      Vivafive
+    .clear
+  #main
+    #tagContainer
+      #tagAreaParent.tagArea
+        %form
+          %select{:size => 5}
+            - @tags.each do |tag|
+              %option{:onclick => "vivafive.getChildren(#{tag.id});"}= tag.name
+      #tagAreaChild0.tagArea
+      #tagAreaChild1.tagArea
+      #tagAreaChild2.tagArea
+      .clear
