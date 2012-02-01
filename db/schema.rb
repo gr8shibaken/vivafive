@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120127054419) do
+ActiveRecord::Schema.define(:version => 20120201022217) do
 
   create_table "tags", :force => true do |t|
     t.string   "name"
@@ -21,5 +21,12 @@ ActiveRecord::Schema.define(:version => 20120127054419) do
   end
 
   add_index "tags", ["ancestry"], :name => "index_tags_on_ancestry"
+
+  create_table "titles", :force => true do |t|
+    t.string   "name"
+    t.integer  "tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

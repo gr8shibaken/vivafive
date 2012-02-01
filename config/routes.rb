@@ -2,6 +2,7 @@ Vivafive::Application.routes.draw do
   root :to => 'tags#index'
   get "tags/index"
   get "tags/get_children"
+  get "tags/get_title"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

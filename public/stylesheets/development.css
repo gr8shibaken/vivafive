@@ -68,9 +68,17 @@ div#main {
   padding:15px;
 }
 
+div#tagContainer{
+  margin-bottom :20px;
+}
+
 div.tagArea{
   margin-right: 10px;
   float:left;
+}
+
+div#titleArea {
+  font-size: 18px;
 }
 
 select {
