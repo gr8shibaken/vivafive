@@ -36,10 +36,10 @@ ActiveRecord::Schema.define(:version => 20120206025431) do
   add_index "tags", ["ancestry"], :name => "index_tags_on_ancestry"
 
   create_table "tags_questions", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.integer  "tag_id"
     t.integer  "question_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "titles", :force => true do |t|

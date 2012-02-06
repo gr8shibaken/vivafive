@@ -1,4 +1,3 @@
-=begin
 open("db/dummy/tag.tsv") {|f|
   f.each_line {|line|
     line = line.strip
@@ -27,7 +26,7 @@ Tag.all.each {|tag|
     )
   end
 }
-=end
+
 Tag.all.each {|tag|
   if !tag.has_children?
     number_of_question=14

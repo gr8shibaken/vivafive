@@ -1,7 +1,6 @@
 class TagsController < ApplicationController
   def index
     @tags = Tag.where(:ancestry => nil)
-    @questions = Tag.find(25).questions
   end
   def get_children
     render :json =>
