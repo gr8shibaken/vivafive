@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120201022217) do
+ActiveRecord::Schema.define(:version => 20120206025431) do
+
+  create_table "questions", :force => true do |t|
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tag_q_relations", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "question_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "tags", :force => true do |t|
     t.string   "name"
@@ -21,6 +34,13 @@ ActiveRecord::Schema.define(:version => 20120201022217) do
   end
 
   add_index "tags", ["ancestry"], :name => "index_tags_on_ancestry"
+
+  create_table "tags_questions", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "tag_id"
+    t.integer  "question_id"
+  end
 
   create_table "titles", :force => true do |t|
     t.string   "name"

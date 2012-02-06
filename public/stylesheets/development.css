@@ -81,6 +81,10 @@ div#titleArea {
   font-size: 18px;
 }
 
+div#questionArea {
+  font-size: 18px;
+}
+
 select {
   width: 150px;
   font-size: 18px;

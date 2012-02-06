@@ -1,0 +1,21 @@
+%h1 Listing tag_q_relations
+
+%table
+  %tr
+    %th Tag
+    %th Question
+    %th
+    %th
+    %th
+
+  - @tag_q_relations.each do |tag_q_relation|
+    %tr
+      %td= tag_q_relation.tag_id
+      %td= tag_q_relation.question_id
+      %td= link_to 'Show', tag_q_relation
+      %td= link_to 'Edit', edit_tag_q_relation_path(tag_q_relation)
+      %td= link_to 'Destroy', tag_q_relation, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Tag q relation', new_tag_q_relation_path

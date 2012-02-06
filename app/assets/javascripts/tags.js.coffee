@@ -5,14 +5,17 @@ window.vivafive.getChildren = (tagId) ->
   ).success((result) ->
     deleteSelectArea = (depth) ->
       $('#titleArea').empty()
+      $('#questionArea').empty()
       while depth <= 3
         deleteElement = '#tagAreaChild' + depth
         $(deleteElement).empty()
         depth++
+
     addButton = (depth) ->
-      addButton = "<button onclick='vivafive.showTitle(#{tagId});'>タイトルを<br />決定する</button>"
+      addButton = "<button onclick='vivafive.showTitle(#{tagId}); vivafive.showQuestion(#{tagId});'>タイトルを<br />決定する</button>"
       outputElement = '#tagAreaChild' + depth
       $(outputElement).html(addButton)
+
     addSelectArea = (depth,children) ->
       addSelectArea = "<form><select size='5'>"
       for child in children
@@ -41,3 +44,16 @@ window.vivafive.showTitle = (tagId) ->
   ).fail( ->
     #TODO error handling
   )
+
+
+window.vivafive.showQuestion = (tagId) ->
+  $('#questionArea').empty()
+  $.getJSON('/tags/get_questions.json',{id: tagId}
+  ).success((result) ->
+    $('#questionArea').append('<br />Chose Client Questions<br />')
+    for i in result
+      $('#questionArea').append('- '+i.description+'<br />')
+#      alert(i.description)
+  ).fail( ->
+  )
+
