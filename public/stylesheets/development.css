@@ -44,7 +44,7 @@ body {
 
 div#container {
   margin:auto;
-  width:1200px;
+  width:900px;
   border-left:1px solid #dddddd;
   border-right:1px solid #dddddd;
   border-bottom:1px solid #dddddd;
@@ -58,6 +58,7 @@ div#main {
 
 div#header {
   padding: 10px;
+  border-bottom:1px solid #dddddd;
 }
 
 div#header div#logoArea{

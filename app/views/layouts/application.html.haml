@@ -8,5 +8,7 @@
     = csrf_meta_tags
     = yield :head
   %body
-  = yield
+    #container
+      = render 'layouts/header'
+      = yield
 
