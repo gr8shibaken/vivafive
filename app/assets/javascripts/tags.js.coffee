@@ -6,7 +6,7 @@ window.vivafive.getChildren = (tagId) ->
     deleteSelectArea = (depth) ->
       $('#titleArea').empty()
       $('#questionArea').empty()
-      while depth <= 3
+      while depth <= 4
         deleteElement = '#tagAreaChild' + depth
         $(deleteElement).empty()
         depth++

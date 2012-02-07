@@ -2,29 +2,26 @@ open("db/dummy/tag.tsv") {|f|
   f.each_line {|line|
     line = line.strip
     next if line.empty?
-    name,parent = line.split("\t")
+    name,parent,title = line.split("\t")
     Tag.create!(
       :name   => name,
       :parent => Tag.find_by_name(parent)
     )
+    if title
+      Title.create!(
+        :name => title,
+        :tag  => Tag.last
+      )
+    end
   }
 }
 
 open("db/dummy/question.tsv") {|f|
   f.each_line {|line|
     Question.create!(
-      :description => line.delete("\n")
+      :description => line.strip
     )
   }
-}
-
-Tag.all.each {|tag|
-  if !tag.has_children?
-    Title.create!(
-      :name => "#{tag.name}-title",
-      :tag  => tag
-    )
-  end
 }
 
 Tag.all.each {|tag|
