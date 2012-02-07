@@ -19,13 +19,6 @@ ActiveRecord::Schema.define(:version => 20120206025431) do
     t.datetime "updated_at"
   end
 
-  create_table "tag_q_relations", :force => true do |t|
-    t.integer  "tag_id"
-    t.integer  "question_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "tags", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"

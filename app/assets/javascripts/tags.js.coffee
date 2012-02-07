@@ -53,7 +53,6 @@ window.vivafive.showQuestion = (tagId) ->
     $('#questionArea').append('<br />Chose Client Questions<br />')
     for i in result
       $('#questionArea').append('- '+i.description+'<br />')
-#      alert(i.description)
   ).fail( ->
   )
 

@@ -14,7 +14,6 @@ class TagsController < ApplicationController
   end
 
   def get_questions
-    @questions = Tag.find(params[:id]).questions
-    render :json => @questions
+    render :json => Tag.find(params[:id]).questions
   end
 end
