@@ -50,9 +50,10 @@ window.vivafive.showQuestion = (tagId) ->
   $('#questionArea').empty()
   $.getJSON('/tags/get_questions.json',{id: tagId}
   ).success((result) ->
-    $('#questionArea').append('<br />Chose Client Questions<br />')
-    for i in result
-      $('#questionArea').append('- '+i.description+'<br />')
+    $('#questionArea').append('<form name="chbox">')
+    $('#questionArea').append('<br />Choose Client Questions<br />')
+    for r in result
+      $('#questionArea').append('<input type="checkbox">'+r.description+'<br />')
   ).fail( ->
   )
 
