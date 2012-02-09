@@ -1,12 +1,9 @@
 Vivafive::Application.routes.draw do
   resources :tags_client_questions
-
   resources :client_questions
-
   resources :tags_professional_questions
-
   resources :professional_questions
-
+  resources :users
   resources :jobs
   resources :questions
 
@@ -15,6 +12,20 @@ Vivafive::Application.routes.draw do
   get "tags/get_title"
   get "tags/get_professional_questions"
   get "tags/get_client_questions"
+
+  resources :jobs
+
+  root :to => 'sessions#new'
+  
+  namespace :tags do |feeds|
+    match :get_children
+    match :get_title
+    match :get_questions
+  end
+
+  get "sessions/new"
+  post "sessions/create"
+  delete "sessions/destroy"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

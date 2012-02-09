@@ -1,0 +1,4 @@
+= form_tag '/sessions/create' do
+  %p= select_tag :user, options_for_select(@users.map{|user|[user.name,user.id]})
+  %br
+  = submit_tag 'Login'

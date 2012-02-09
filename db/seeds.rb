@@ -1,3 +1,8 @@
+users = ['shibata','teshima','kudo','kawahito']
+users.each do |user|
+  User.create!(:name => user)
+end
+
 open("db/dummy/tag.tsv") {|f|
   f.each_line {|line|
     line = line.strip
