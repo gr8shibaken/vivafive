@@ -1,4 +1,5 @@
 Vivafive::Application.routes.draw do
+  root :to => 'sessions#new'
   resources :tags_client_questions
   resources :client_questions
   resources :tags_professional_questions
@@ -6,21 +7,11 @@ Vivafive::Application.routes.draw do
   resources :users
   resources :jobs
   resources :questions
-
-  root :to => 'jobs#index'
-  get "tags/get_children"
-  get "tags/get_title"
-  get "tags/get_professional_questions"
-  get "tags/get_client_questions"
-
-  resources :jobs
-
-  root :to => 'sessions#new'
-  
   namespace :tags do |feeds|
     match :get_children
     match :get_title
-    match :get_questions
+    match :get_professional_questions
+    match :get_client_questions
   end
 
   get "sessions/new"

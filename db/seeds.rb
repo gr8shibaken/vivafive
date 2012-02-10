@@ -39,12 +39,12 @@ open("db/dummy/professional_question.tsv") {|f|
 
 Tag.all.each {|tag|
   if !tag.has_children?
-    number_of_client_question=14
+    number_of_client_question = 14
     client_questions = Array.new
     
     number_of_client_question.times{|i| client_questions.push(i+1)}
     
-    number_of_client_question_sample=8
+    number_of_client_question_sample = 8
     client_question_samples = client_questions.sample(number_of_client_question_sample)
 
     client_question_samples.each do |sample|
@@ -59,7 +59,7 @@ Tag.all.each {|tag|
 
     number_of_professional_question.times{|i| professional_questions.push(i+1)}
     
-    number_of_professional_question_sample=3
+    number_of_professional_question_sample = 3
     professional_question_samples = professional_questions.sample(number_of_professional_question_sample)
 
     professional_question_samples.each do |sample|
@@ -68,6 +68,5 @@ Tag.all.each {|tag|
         :professional_question_id => sample
       )
     end
-
   end
 }
