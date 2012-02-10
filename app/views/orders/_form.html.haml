@@ -1,0 +1,31 @@
+
+#main
+  %table
+    %tr
+      %td.label Title
+      %td= @job.tag.title
+    %tr
+      %td.label Professional
+      %td= @job.professional.name
+    %tr
+      %td.label Client
+      %td= current_user.name
+    %tr
+      %td.label Price
+      %td $5
+
+  %br
+  = form_for @order do |f|
+    -if @order.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@order.errors.count, "error")} prohibited this order from being saved:"
+        %ul
+          - @order.errors.full_messages.each do |msg|
+            %li= msg
+    
+    =# TODO Refactor
+    .actions
+      = f.hidden_field :job         , :value => @job.id
+      = f.hidden_field :client      , :value => current_user.id
+      = f.hidden_field :professional, :value => @job.professional.id
+      = f.submit 'Order'

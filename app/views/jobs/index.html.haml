@@ -1,0 +1,9 @@
+#main
+  %table
+    - @jobs.each do |job|
+      %tr
+        %td= job.tag.title
+        %td
+          = form_tag({:action => 'new', :controller => 'orders'},{:method => 'get'}) do
+            = hidden_field_tag :job, job.id
+            = submit_tag 'Order Now'

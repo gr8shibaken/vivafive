@@ -1,10 +1,12 @@
 class TagsController < ApplicationController
 
   def get_children
+    myself = Tag.find(params[:id])
     render :json =>
       {
-        :depth    => Tag.find(params[:id]).depth,
-        :children => Tag.find(params[:id]).children
+        :myself   => myself,
+        :depth    => myself.depth,
+        :children => myself.children
       }
   end
   def get_title

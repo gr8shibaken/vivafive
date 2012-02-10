@@ -13,7 +13,7 @@ window.vivafive.getChildren = (tagId) ->
         depth++
 
     addButton = (depth) ->
-      addButton = "<button onclick='vivafive.showTitle(#{tagId}); vivafive.showQuestion(#{tagId});'>タイトルを<br />決定する</button>"
+      addButton = "<button onclick=vivafive.showDetail('#{myself.title}',#{tagId});>タイトルを<br />決定する</button>"
       outputElement = '#tagAreaChild' + depth
       $(outputElement).html(addButton)
 
@@ -25,11 +25,12 @@ window.vivafive.getChildren = (tagId) ->
       outputElement = '#tagAreaChild' + depth
       $(outputElement).html(addSelectArea)
     
+    myself = result.myself
     depth = result.depth
     children = result.children
     if children.length == 0
       deleteSelectArea(depth)
-      addButton(depth)
+      addButton(depth,myself)
     else
       deleteSelectArea(depth)
       addSelectArea(depth,children)
@@ -37,20 +38,10 @@ window.vivafive.getChildren = (tagId) ->
     #TODO error handling
   )
 
-window.vivafive.showTitle = (tagId) ->
-  $.getJSON(
-    '/tags/get_title.json',{id: tagId}
-  ).success((title) ->
-    $('#titleArea').html(title.name)
-  ).fail( ->
-    #TODO error handling
-  )
-
-
-window.vivafive.showQuestion = (tagId) ->
+window.vivafive.showDetail = (title,tagId) ->
+  $('#titleArea').html(title)
   $('#professionalQuestionArea').empty()
   $('#clientQuestionArea').empty()
-
   $.get('/tags/get_professional_questions.html',{id: tagId},'html'
   ).success((result) ->
     $('#professionalQuestionArea').append(result)
@@ -60,9 +51,10 @@ window.vivafive.showQuestion = (tagId) ->
   $.getJSON('/tags/get_client_questions.json',{id: tagId}
   ).success((result) ->
     $('#clientQuestionArea').append('<form name="chbox">')
-    $('#clientQuestionArea').append('<br />Choose Client Question<br />')
+    $('#clientQuestionArea').append('<p><h3>Choose Client Question</h3></p>')
     for r in result
       $('#clientQuestionArea').append('<input type="checkbox">'+r.title+'<br />')
   ).fail( ->
   )
+
 

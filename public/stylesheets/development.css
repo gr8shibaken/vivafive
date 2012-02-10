@@ -42,6 +42,10 @@ body {
   text-align:left;
 }
 
+#notice {
+  color: green; 
+}
+
 div#container {
   margin:auto;
   width:900px;
@@ -52,7 +56,7 @@ div#container {
 }
 
 div#main {
-  min-height:490px;
+/*  min-height:490px;*/
   padding:10px 20px;
 }
 
@@ -79,18 +83,25 @@ div.tagArea{
 }
 
 div#titleArea {
-  font-size: 18px;
+  font-size: 15px;
+  margin-bottom: 20px;
 }
 
 div#professionalQuestionArea {
-  font-size: 18px;
+  font-size: 15px;
+  margin-bottom: 20px;
 }
 
 div#clientQuestionArea {
-  font-size: 18px;
+  font-size: 15px;
 }
 
 select {
   width: 150px;
-  font-size: 18px;
+  font-size: 15px;
+}
+
+td.label{
+  font-weight: bold;
+  padding-right: 10px;
 }

@@ -1,21 +1,23 @@
-users = ['shibata','teshima','kudo','kawahito']
+users = ['shibata','teshima','kudo','kawahito','ogawa','tagashira']
 users.each do |user|
   User.create!(:name => user)
 end
 
 open("db/dummy/tag.tsv") {|f|
+  professionals = User.all
   f.each_line {|line|
     line = line.strip
     next if line.empty?
     name,parent,title = line.split("\t")
     Tag.create!(
       :name   => name,
+      :title  => title,
       :parent => Tag.find_by_name(parent)
     )
     if title
-      Title.create!(
-        :name => title,
-        :tag  => Tag.last
+      Job.create!(
+        :professional => professionals.at(rand(professionals.size)),
+        :tag          => Tag.last
       )
     end
   }
@@ -49,8 +51,8 @@ Tag.all.each {|tag|
 
     client_question_samples.each do |sample|
       TagsClientQuestion.create!(
-        :tag_id => tag.id,
-        :client_question_id => sample
+        :tag => tag,
+        :client_question => ClientQuestion.find(sample)
       )
     end
 
@@ -64,9 +66,11 @@ Tag.all.each {|tag|
 
     professional_question_samples.each do |sample|
       TagsProfessionalQuestion.create!(
-        :tag_id => tag.id,
-        :professional_question_id => sample
+        :tag => tag,
+        :professional_question => ProfessionalQuestion.find(sample)
       )
     end
   end
 }
+
+
