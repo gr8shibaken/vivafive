@@ -100,6 +100,9 @@ select {
   width: 150px;
   font-size: 15px;
 }
+td {
+  vertical-align: top;
+}
 
 td.label{
   font-weight: bold;

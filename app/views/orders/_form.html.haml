@@ -2,16 +2,10 @@
   %table
     %tr
       %td.label Title
-      %td= @job.tag.title
+      %td= @job.tag.title.description
     %tr
       %td.label Professional
       %td= @job.professional.name
-    %tr
-      %td.label Client
-      %td= current_user.name
-    %tr
-      %td.label Price
-      %td $5
 
   %br
   = form_for @order do |f|
@@ -23,7 +17,10 @@
             %li= msg
     
     =# TODO Refactor
-    .actions
+    #clientQuestionArea
+      %h3 Answer Question
+      - @client_questions.each do |client_question|
+        %p= client_question.title
       = f.hidden_field :job         , :value => @job.id
       = f.hidden_field :client      , :value => current_user.id
       = f.hidden_field :professional, :value => @job.professional.id

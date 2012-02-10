@@ -1,6 +1,16 @@
-%p#notice= notice
-
-
-= link_to 'Edit', edit_job_path(@job)
-\|
-= link_to 'Back', jobs_path
+#main
+  %p#notice= notice
+  
+  %br
+  %table
+    %tr
+      %td.label Title
+      %td= @job.tag.title.description
+    %tr
+      %td.label Professional
+      %td= @job.professional.name
+    %tr
+      %td.label Client Questions
+      %td
+        - @client_questions.each do |client_question|
+          %p= client_question.title

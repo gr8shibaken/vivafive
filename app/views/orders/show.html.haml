@@ -5,16 +5,10 @@
   %table
     %tr
       %td.label Title
-      %td= @order.job.tag.title
+      %td= @order.job.tag.title.description
     %tr
       %td.label Professional
       %td= @order.professional.name
     %tr
       %td.label Client
       %td= @order.client.name
-    %tr
-      %td.label Price
-      %td $5
-
-  %br
-  = link_to 'Back', jobs_path

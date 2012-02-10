@@ -1,4 +1,5 @@
 class JobsController < ApplicationController
+  before_filter :login_check
   # GET /jobs
   # GET /jobs.json
   def index
@@ -14,6 +15,7 @@ class JobsController < ApplicationController
   # GET /jobs/1.json
   def show
     @job = Job.find(params[:id])
+    @client_questions = ClientQuestion.find(@job.client_question_ids)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -41,17 +43,21 @@ class JobsController < ApplicationController
   # POST /jobs
   # POST /jobs.json
   def create
-    @job = Job.new(params[:job])
-
-    respond_to do |format|
-      if @job.save
-        format.html { redirect_to @job, notice: 'Job was successfully created.' }
-        format.json { render json: @job, status: :created, location: @job }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @job.errors, status: :unprocessable_entity }
-      end
-    end
+    @job = Job.new(
+       :tag => Tag.find(params[:job][:tag]),
+       :professional => User.find(params[:job][:professional]),
+       :client_question_ids => params[:job][:client_question_ids]
+     )
+   
+     respond_to do |format|
+       if @job.save
+         format.html { redirect_to @job, notice: 'Job was successfully created.' }
+         format.json { render json: @job, status: :created, location: @job }
+       else
+         format.html { render action: "new" }
+         format.json { render json: @job.errors, status: :unprocessable_entity }
+       end
+     end
   end
 
   # PUT /jobs/1

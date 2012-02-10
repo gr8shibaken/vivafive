@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_filter :login_check
   # GET /orders
   # GET /orders.json
   def index
@@ -24,6 +25,7 @@ class OrdersController < ApplicationController
   # GET /orders/new.json
   def new
     @job = Job.find(params[:job])
+    @client_questions = ClientQuestion.find(@job.client_question_ids)
     @order = Order.new
     respond_to do |format|
       format.html # new.html.erb

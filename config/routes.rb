@@ -1,6 +1,5 @@
 Vivafive::Application.routes.draw do
   resources :orders
-
   root :to => 'sessions#new'
   resources :tags_client_questions
   resources :client_questions

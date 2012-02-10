@@ -27,12 +27,11 @@ open("db/dummy/tag.tsv") {|f|
     name,parent,title,client_questions = line.split("\t")
     Tag.create!(
       :name   => name,
-      :title  => title,
       :parent => Tag.find_by_name(parent)
     )
-    if title && Job.all.count == 0
-      Job.create!(
-        :professional => professionals.at(rand(professionals.size)),
+    if title
+      Title.create!(
+        :description  => title,
         :tag          => Tag.last
       )
     end
