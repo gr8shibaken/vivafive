@@ -5,7 +5,8 @@ window.vivafive.getChildren = (tagId) ->
   ).success((result) ->
     deleteSelectArea = (depth) ->
       $('#titleArea').empty()
-      $('#questionArea').empty()
+      $('#professionalQuestionArea').empty()
+      $('#clientQuestionArea').empty()
       while depth <= 4
         deleteElement = '#tagAreaChild' + depth
         $(deleteElement).empty()
@@ -25,7 +26,7 @@ window.vivafive.getChildren = (tagId) ->
       $(outputElement).html(addSelectArea)
     
     depth = result.depth
-    children = result.children    
+    children = result.children
     if children.length == 0
       deleteSelectArea(depth)
       addButton(depth)
@@ -47,13 +48,21 @@ window.vivafive.showTitle = (tagId) ->
 
 
 window.vivafive.showQuestion = (tagId) ->
-  $('#questionArea').empty()
-  $.getJSON('/tags/get_questions.json',{id: tagId}
+  $('#professionalQuestionArea').empty()
+  $('#clientQuestionArea').empty()
+
+  $.get('/tags/get_professional_questions.html',{id: tagId},'html'
   ).success((result) ->
-    $('#questionArea').append('<form name="chbox">')
-    $('#questionArea').append('<br />Choose Client Questions<br />')
+    $('#professionalQuestionArea').append(result)
+  ).fail( ->
+  )
+
+  $.getJSON('/tags/get_client_questions.json',{id: tagId}
+  ).success((result) ->
+    $('#clientQuestionArea').append('<form name="chbox">')
+    $('#clientQuestionArea').append('<br />Choose Client Question<br />')
     for r in result
-      $('#questionArea').append('<input type="checkbox">'+r.description+'<br />')
+      $('#clientQuestionArea').append('<input type="checkbox">'+r.title+'<br />')
   ).fail( ->
   )
 

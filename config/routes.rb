@@ -1,11 +1,20 @@
 Vivafive::Application.routes.draw do
+  resources :tags_client_questions
+
+  resources :client_questions
+
+  resources :tags_professional_questions
+
+  resources :professional_questions
+
   resources :jobs
   resources :questions
 
   root :to => 'jobs#index'
   get "tags/get_children"
   get "tags/get_title"
-  get "tags/get_questions"
+  get "tags/get_professional_questions"
+  get "tags/get_client_questions"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

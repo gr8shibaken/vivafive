@@ -1,0 +1,21 @@
+%h1 Listing tags_professional_questions
+
+%table
+  %tr
+    %th Tag
+    %th Professional question
+    %th
+    %th
+    %th
+
+  - @tags_professional_questions.each do |tags_professional_question|
+    %tr
+      %td= tags_professional_question.tag_id
+      %td= tags_professional_question.professional_question_id
+      %td= link_to 'Show', tags_professional_question
+      %td= link_to 'Edit', edit_tags_professional_question_path(tags_professional_question)
+      %td= link_to 'Destroy', tags_professional_question, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Tags professional question', new_tags_professional_question_path

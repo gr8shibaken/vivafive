@@ -1,0 +1,19 @@
+%h1 Listing professional_questions
+
+%table
+  %tr
+    %th Title
+    %th
+    %th
+    %th
+
+  - @professional_questions.each do |professional_question|
+    %tr
+      %td= professional_question.title
+      %td= link_to 'Show', professional_question
+      %td= link_to 'Edit', edit_professional_question_path(professional_question)
+      %td= link_to 'Destroy', professional_question, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Professional question', new_professional_question_path

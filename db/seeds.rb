@@ -16,29 +16,53 @@ open("db/dummy/tag.tsv") {|f|
   }
 }
 
-open("db/dummy/question.tsv") {|f|
+open("db/dummy/client_question.tsv") {|f|
   f.each_line {|line|
-    Question.create!(
-      :description => line.strip
+    ClientQuestion.create!(
+      :title => line.strip
+    )
+  }
+}
+
+open("db/dummy/professional_question.tsv") {|f|
+  f.each_line {|line|
+    ProfessionalQuestion.create!(
+      :title => line.strip
     )
   }
 }
 
 Tag.all.each {|tag|
   if !tag.has_children?
-    number_of_question=14
-    questions = Array.new
+    number_of_client_question=14
+    client_questions = Array.new
     
-    number_of_question.times{|i| questions.push(i+1)}
+    number_of_client_question.times{|i| client_questions.push(i+1)}
     
-    number_of_sample=8
-    samples = questions.sample(number_of_sample)
+    number_of_client_question_sample=8
+    client_question_samples = client_questions.sample(number_of_client_question_sample)
 
-    samples.each do |sample|
-      TagsQuestion.create!(
+    client_question_samples.each do |sample|
+      TagsClientQuestion.create!(
         :tag_id => tag.id,
-        :question_id => sample
+        :client_question_id => sample
       )
     end
+
+    number_of_professional_question = 5
+    professional_questions = Array.new
+
+    number_of_professional_question.times{|i| professional_questions.push(i+1)}
+    
+    number_of_professional_question_sample=3
+    professional_question_samples = professional_questions.sample(number_of_professional_question_sample)
+
+    professional_question_samples.each do |sample|
+      TagsProfessionalQuestion.create!(
+        :tag_id => tag.id,
+        :professional_question_id => sample
+      )
+    end
+
   end
 }

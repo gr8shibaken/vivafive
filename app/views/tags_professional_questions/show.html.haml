@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Tag:
+  = @tags_professional_question.tag_id
+%p
+  %b Professional question:
+  = @tags_professional_question.professional_question_id
+
+= link_to 'Edit', edit_tags_professional_question_path(@tags_professional_question)
+\|
+= link_to 'Back', tags_professional_questions_path

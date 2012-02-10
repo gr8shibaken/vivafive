@@ -1,4 +1,5 @@
 class TagsController < ApplicationController
+
   def get_children
     render :json =>
       {
@@ -10,7 +11,12 @@ class TagsController < ApplicationController
     render :json => Tag.find(params[:id]).title
   end
 
-  def get_questions
-    render :json => Tag.find(params[:id]).questions
+  def get_professional_questions
+    @professional_questions = Tag.find(params[:id]).professional_questions
+    render 'tags/get_professional_questions'
+  end
+
+  def get_client_questions
+    render :json => Tag.find(params[:id]).client_questions
   end
 end

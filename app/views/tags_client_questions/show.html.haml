@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Tag:
+  = @tags_client_question.tag_id
+%p
+  %b Client question:
+  = @tags_client_question.client_question_id
+
+= link_to 'Edit', edit_tags_client_question_path(@tags_client_question)
+\|
+= link_to 'Back', tags_client_questions_path

@@ -1,0 +1,2 @@
+module ProfessionalQuestionsHelper
+end

@@ -82,7 +82,11 @@ div#titleArea {
   font-size: 18px;
 }
 
-div#questionArea {
+div#professionalQuestionArea {
+  font-size: 18px;
+}
+
+div#clientQuestionArea {
   font-size: 18px;
 }
 
