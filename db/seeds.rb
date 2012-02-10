@@ -3,26 +3,6 @@ users.each do |user|
   User.create!(:name => user)
 end
 
-open("db/dummy/tag.tsv") {|f|
-  professionals = User.all
-  f.each_line {|line|
-    line = line.strip
-    next if line.empty?
-    name,parent,title = line.split("\t")
-    Tag.create!(
-      :name   => name,
-      :title  => title,
-      :parent => Tag.find_by_name(parent)
-    )
-    if title
-      Job.create!(
-        :professional => professionals.at(rand(professionals.size)),
-        :tag          => Tag.last
-      )
-    end
-  }
-}
-
 open("db/dummy/client_question.tsv") {|f|
   f.each_line {|line|
     ClientQuestion.create!(
@@ -39,23 +19,36 @@ open("db/dummy/professional_question.tsv") {|f|
   }
 }
 
-Tag.all.each {|tag|
-  if !tag.has_children?
-    number_of_client_question = 14
-    client_questions = Array.new
-    
-    number_of_client_question.times{|i| client_questions.push(i+1)}
-    
-    number_of_client_question_sample = 8
-    client_question_samples = client_questions.sample(number_of_client_question_sample)
-
-    client_question_samples.each do |sample|
-      TagsClientQuestion.create!(
-        :tag => tag,
-        :client_question => ClientQuestion.find(sample)
+open("db/dummy/tag.tsv") {|f|
+  professionals = User.all
+  f.each_line {|line|
+    line = line.strip
+    next if line.empty?
+    name,parent,title,client_questions = line.split("\t")
+    Tag.create!(
+      :name   => name,
+      :title  => title,
+      :parent => Tag.find_by_name(parent)
+    )
+    if title && Job.all.count == 0
+      Job.create!(
+        :professional => professionals.at(rand(professionals.size)),
+        :tag          => Tag.last
       )
     end
+    if client_questions
+      client_questions.split(",").each{|client_question|
+        TagsClientQuestion.create!(
+          :tag              => Tag.last,
+          :client_question  => ClientQuestion.find(client_question)
+        )
+      }
+    end
+  }
+}
 
+Tag.all.each {|tag|
+  if !tag.has_children?
     number_of_professional_question = 5
     professional_questions = Array.new
 
