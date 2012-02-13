@@ -8,5 +8,6 @@
       = link_to 'PostJob', new_job_path
     .right
       = current_user.name
+      = link_to 'mypage', user_path(current_user)
       = link_to 'Logout', '/sessions/destroy', :method => 'delete'
     .clear

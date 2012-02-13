@@ -1,9 +1,35 @@
-%p#notice= notice
+#main
+  %p#notice= notice
 
-%p
-  %b Name:
-  = @user.name
+  %h3 MyJobs
+  - current_user.jobs.each do |job|
+    %p= job.tag.title.description
 
-= link_to 'Edit', edit_user_path(@user)
-\|
-= link_to 'Back', users_path
+  %br
+  %h3 Order Receipts (受注)
+  %table
+    - unless current_user.order_receipts.blank?
+      %tr
+        %td
+          %b Title
+        %td
+          %b Client
+    - current_user.order_receipts.each do |order_receipt|
+      %tr
+        %td= order_receipt.job.tag.title.description
+        %td= order_receipt.client.name 
+  
+  %br
+  %h3 Order Placements (発注)
+  %table
+    - unless current_user.order_placements.blank?
+      %tr
+        %td
+          %b Title
+        %td
+          %b Professional
+    - current_user.order_placements.each do |order_placement|
+      %tr
+        %td= order_placement.job.tag.title.description
+        %td= order_placement.professional.name
+      

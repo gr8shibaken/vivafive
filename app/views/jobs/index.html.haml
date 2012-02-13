@@ -6,4 +6,7 @@
         %td
           = form_tag({:action => 'new', :controller => 'orders'},{:method => 'get'}) do
             = hidden_field_tag :job, job.id
-            = submit_tag 'Order Now'
+            - if current_user != job.professional
+              = submit_tag 'Order Now'
+            - else
+              = submit_tag 'Order Now', :disabled => true
