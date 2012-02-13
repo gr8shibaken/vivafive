@@ -3,11 +3,11 @@ Vivafive::Application.routes.draw do
   resources :orders
   resources :users
   resources :jobs
-  namespace :tags do |feeds|
-    match :get_children
-    match :get_title
-    match :get_professional_questions
-    match :get_client_questions
+  namespace :tags do |tags|
+    get :get_children
+    get :get_title
+    get :get_professional_questions
+    get :get_client_questions
   end
 
   get "sessions/new"

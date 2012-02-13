@@ -1,5 +1,4 @@
 class TagsController < ApplicationController
-
   def get_children
     myself = Tag.find(params[:id])
     render :json =>
