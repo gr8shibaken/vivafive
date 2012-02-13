@@ -12,5 +12,5 @@
     %tr
       %td.label Client Questions
       %td
-        - @client_questions.each do |client_question|
+        - @job.client_questions.each do |client_question|
           %p= client_question.title

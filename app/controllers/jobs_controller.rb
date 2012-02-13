@@ -11,8 +11,6 @@ class JobsController < ApplicationController
 
   def show
     @job = Job.find(params[:id])
-    @client_questions = ClientQuestion.find(@job.client_question_ids)
-
     respond_to do |format|
       format.html
       format.json { render json: @job }
@@ -36,20 +34,38 @@ class JobsController < ApplicationController
   def create
     # TODO Refactor
     @job = Job.new(
-       :tag => Tag.find(params[:job][:tag]),
-       :professional => User.find(params[:job][:professional]),
-       :client_question_ids => params[:job][:client_question_ids]
-     )
+      :tag => Tag.find(params[:job][:tag]),
+      :professional => User.find(params[:job][:professional])
+    )
+    
+    jobs_client_questions = []
+    params[:job][:client_question_ids].each do |client_question_id|
+      jobs_client_questions.push(
+        JobsClientQuestion.new(
+          :job              => @job,
+          :client_question  => ClientQuestion.find(client_question_id)
+        )
+      )
+    end
+    
+    success = false
+    ActiveRecord::Base.transaction {
+      if jobs_client_questions.blank?
+        success = @job.save!
+      else
+        success = @job.save!&&jobs_client_questions.each do |jobs_client_question| jobs_client_question.save! end
+      end
+    }
    
-     respond_to do |format|
-       if @job.save
-         format.html { redirect_to @job, notice: 'Job was successfully created.' }
-         format.json { render json: @job, status: :created, location: @job }
-       else
-         format.html { render action: "new" }
-         format.json { render json: @job.errors, status: :unprocessable_entity }
-       end
-     end
+    respond_to do |format|
+      if success
+        format.html { redirect_to @job, notice: 'Job was successfully created.' }
+        format.json { render json: @job, status: :created, location: @job }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @job.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def update

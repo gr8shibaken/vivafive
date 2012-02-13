@@ -21,7 +21,6 @@ class OrdersController < ApplicationController
 
   def new
     @job = Job.find(params[:job])
-    @client_questions = ClientQuestion.find(@job.client_question_ids)
     @order = Order.new
     respond_to do |format|
       format.html

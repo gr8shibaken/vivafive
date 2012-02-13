@@ -3,7 +3,6 @@ class CreateJobs < ActiveRecord::Migration
     create_table :jobs do |t|
       t.integer     :professional
       t.references  :tag
-      t.string      :client_question_ids
       t.timestamps
     end
   end

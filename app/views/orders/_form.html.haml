@@ -19,7 +19,7 @@
     =# TODO Refactor
     #clientQuestionArea
       %h3 Answer Question
-      - @client_questions.each do |client_question|
+      - @job.client_questions.each do |client_question|
         %p= client_question.title
       = f.hidden_field :job         , :value => @job.id
       = f.hidden_field :client      , :value => current_user.id

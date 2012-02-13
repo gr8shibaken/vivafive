@@ -3,5 +3,6 @@ class Job < ActiveRecord::Base
   has_many    :orders
   belongs_to  :tag
   belongs_to  :professional, :foreign_key => 'professional', :class_name => 'User'
-  serialize   :client_question_ids
+  has_many  :jobs_client_question
+  has_many  :client_questions, :through => :jobs_client_question
 end
