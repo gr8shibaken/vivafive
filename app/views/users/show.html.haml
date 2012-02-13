@@ -31,5 +31,5 @@
     - current_user.order_placements.each do |order_placement|
       %tr
         %td= order_placement.job.tag.title.description
-        %td= order_placement.professional.name
+        %td= order_placement.job.professional.name
       

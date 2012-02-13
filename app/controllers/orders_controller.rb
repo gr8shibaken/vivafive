@@ -36,8 +36,7 @@ class OrdersController < ApplicationController
     # TODO Refactor
     @order = Order.new(
       :job    => Job.find(params[:order][:job]),
-      :client => User.find(params[:order][:client]),
-      :professional => User.find(params[:order][:professional])
+      :client => User.find(params[:order][:client])
     )
 
     respond_to do |format|

@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(:version => 20120213040033) do
   create_table "jobs", :force => true do |t|
     t.integer  "professional"
     t.integer  "tag_id"
-    t.string   "client_question_ids"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -36,7 +35,6 @@ ActiveRecord::Schema.define(:version => 20120213040033) do
 
   create_table "orders", :force => true do |t|
     t.integer  "client"
-    t.integer  "professional"
     t.integer  "job_id"
     t.datetime "created_at"
     t.datetime "updated_at"
