@@ -1,45 +1,38 @@
 class OrdersController < ApplicationController
   before_filter :login_check
-  # GET /orders
-  # GET /orders.json
+  
   def index
     @orders = Order.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @orders }
     end
   end
 
-  # GET /orders/1
-  # GET /orders/1.json
   def show
     @order = Order.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @order }
     end
   end
-  # GET /orders/new
-  # GET /orders/new.json
+
   def new
     @job = Job.find(params[:job])
     @client_questions = ClientQuestion.find(@job.client_question_ids)
     @order = Order.new
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @order }
     end
   end
 
-  # GET /orders/1/edit
   def edit
     @order = Order.find(params[:id])
   end
 
-  # POST /orders
-  # POST /orders.json
   def create
     # TODO Refactor
     @order = Order.new(
@@ -59,8 +52,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  # PUT /orders/1
-  # PUT /orders/1.json
   def update
     @order = Order.find(params[:id])
 
@@ -75,8 +66,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  # DELETE /orders/1
-  # DELETE /orders/1.json
   def destroy
     @order = Order.find(params[:id])
     @order.destroy
